@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laelaf Abebe - Lead Power BI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent-light: #ff6b88;
+            --gold: #f9a825;
+            --text: #ffffff;
+            --text-muted: #a8a8b3;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-1);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-3);
+            top: 50%;
+            right: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 60px 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text .subtitle {
+            font-size: 28px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-text .description {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .stat-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 80px;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -68px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.2);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .company {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .job-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .date {
+            color: var(--text-muted);
+            font-size: 14px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-list li {
+            padding-left: 30px;
+            margin-bottom: 15px;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .achievement-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        /* Challenge Cards */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .challenge-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+        }
+
+        .challenge-card:nth-child(2)::before {
+            background: var(--gradient-2);
+        }
+
+        .challenge-card:nth-child(3)::before {
+            background: var(--gradient-3);
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+
+        .challenge-header {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .challenge-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .challenge-card:nth-child(2) .challenge-icon {
+            background: var(--gradient-2);
+        }
+
+        .challenge-card:nth-child(3) .challenge-icon {
+            background: var(--gradient-3);
+        }
+
+        .challenge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .challenge-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .challenge-body {
+            padding: 40px;
+        }
+
+        .challenge-section {
+            margin-bottom: 30px;
+        }
+
+        .challenge-section h4 {
+            color: var(--accent);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .challenge-section p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .metric {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(233, 69, 96, 0.2);
+            border-radius: 20px;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            margin: 5px 5px 5px 0;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            border-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 80px 60px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .contact-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+        }
+
+        /* Awards Section */
+        .awards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .award-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .award-card::before {
+            content: '🏆';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 80px;
+            opacity: 0.1;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(249, 168, 37, 0.2);
+        }
+
+        .award-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .award-date {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Interests Section */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .interest-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(233, 69, 96, 0.3);
+        }
+
+        .interest-header {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+
+        .interest-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .interest-card:nth-child(2) .interest-icon {
+            background: var(--gradient-2);
+        }
+
+        .interest-card:nth-child(3) .interest-icon {
+            background: var(--gradient-3);
+        }
+
+        .interest-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .interest-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .interest-body {
+            padding: 40px;
+        }
+
+        .interest-body > p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .passion-points {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .passion-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .passion-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .passion-label {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .passion-value {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .project-idea {
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(233, 69, 96, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .project-idea:hover {
+            background: rgba(233, 69, 96, 0.15);
+            transform: scale(1.02);
+        }
+
+        .project-idea h4 {
+            color: var(--accent);
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .project-idea p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .personal-philosophy {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .personal-philosophy h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .personal-philosophy p {
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 120px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 56px;
+            }
+
+            nav {
+                padding: 20px 30px;
+            }
+
+            section {
+                padding: 80px 30px;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .awards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .hero-text .subtitle {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-gradient-orb orb-1"></div>
+        <div class="bg-gradient-orb orb-2"></div>
+        <div class="bg-gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">LA</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#challenges">Challenges</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Laelaf Abebe</h1>
+                <p class="subtitle">Lead Power BI Engineer</p>
+                <p class="description">
+                    Transforming complex data into actionable insights through innovative BI solutions. 
+                    Specialized in enterprise-scale Power BI development, data modeling, and driving 
+                    data-driven decision-making across government and enterprise sectors.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#experience" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">18+</div>
+                    <div class="stat-label">Enterprise Dashboards Deployed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Performance Records Processed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">60-70%</div>
+                    <div class="stat-label">Reduction in Manual Effort</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99%+</div>
+                    <div class="stat-label">Data Traceability Achieved</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <h2 class="section-title">Professional Journey</h2>
+            <p class="section-subtitle">Driving innovation and excellence in business intelligence across leading organizations</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="company">Kentro</div>
+                            <h3 class="job-title">Lead Power BI Engineer</h3>
+                            <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px;">Veteran Affairs – ESOM Program</p>
+                        </div>
+                        <div class="date">Aug 2024 – Present</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Designed and deployed 18+ enterprise-grade dashboards tracking staffing health, attrition, funding burndown, and resource performance across VA programs</li>
+                        <li>Built automated refresh pipelines and modular data models that reduced manual update effort by 60-70% and delivered near real-time portfolio insights to executives</li>
+                        <li>Engineered ETL processes using fuzzy matching, pattern recognition, and data cleansing logic to parse and validate 500K+ performance records from disparate sources</li>
+                        <li>Achieved 99%+ data traceability, supporting contractual KPI audits and improving leadership confidence in performance metrics</li>
+                        <li>Implemented incremental funding logic and dynamic date modeling in Power BI, automating cumulative funding and spending calculations with SharePoint triggers</li>
+                        <li>Reduced reconciliation errors by 50% while increasing financial data transparency</li>
+                        <li>Led weekly Power BI code reviews and established governance frameworks including reusable DAX templates, standardized color themes, and best practices</li>
+                        <li>Redesigned SharePoint site structure to centralize Power BI reports, SOPs, and source documentation with metadata tagging, access permissions, and version control</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="company">Kentro</div>
+                            <h3 class="job-title">Human Capital / Power BI Consultant</h3>
+                            <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px;">Customs and Border Protection</p>
+                        </div>
+                        <div class="date">Oct 2022 – Aug 2024</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Developed and maintained dashboards tracking human capital risk indicators including vacancy forecasting, attrition trends, and staffing analytics</li>
+                        <li>Built predictive models using Power BI and statistical methods to identify operational gaps in workforce deployment</li>
+                        <li>Produced structured monthly KPI reports for internal and external stakeholders, improving transparency and decision-making effectiveness</li>
+                        <li>Designed Power BI dashboards measuring recruitment campaign performance and candidate conversion rates, resulting in a 20% increase in qualified applicants over two quarters</li>
+                        <li>Partnered with HR leadership and data engineering teams to align Power BI initiatives with organizational modernization goals</li>
+                        <li>Delivered executive-level dashboards and presentations identifying workforce bottlenecks and compliance risks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="company">Deloitte</div>
+                            <h3 class="job-title">Government and Public Service Analyst</h3>
+                            <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px;">State of Montana / IRS</p>
+                        </div>
+                        <div class="date">Jul 2021 – Aug 2022</div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>Authored stakeholder documentation supporting data-driven decision-making and streamlining project workflows</li>
+                        <li>Utilized Power BI, Python, and data visualization tools to transform complex datasets into clear, actionable insights</li>
+                        <li>Led cross-functional requirement sessions translating business needs into technical specifications</li>
+                        <li>Applied advanced analytics and data modeling techniques using Power BI, Python, and SQL to enhance accuracy and speed of decision-making</li>
+                        <li>Implemented Microsoft Teams-based system for sprint planning and work item tracking, increasing team productivity by 20%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges">
+        <div class="section-header">
+            <h2 class="section-title">Challenges Conquered</h2>
+            <p class="section-subtitle">Real-world problems solved through innovative data solutions and strategic thinking</p>
+        </div>
+
+        <div class="challenges-grid">
+            <div class="challenge-card fade-in-up delay-1">
+                <div class="challenge-header">
+                    <div class="challenge-icon">📊</div>
+                    <div class="challenge-subtitle">Data Quality Crisis</div>
+                    <h3 class="challenge-title">500K+ Record Validation & Cleansing</h3>
+                </div>
+                <div class="challenge-body">
+                    <div class="challenge-section">
+                        <h4>The Challenge</h4>
+                        <p>VA programs relied on 500K+ performance records from disparate systems with inconsistent formats, duplicates, and missing critical data. Manual reconciliation was taking weeks and producing unreliable KPI reports for contractual audits.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>The Solution</h4>
+                        <p>Engineered sophisticated ETL processes leveraging fuzzy matching algorithms, pattern recognition, and automated data cleansing logic. Built validation rules that flagged anomalies and standardized formats across all source systems.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>Impact</h4>
+                        <p>
+                            <span class="metric">99%+ Data Traceability</span>
+                            <span class="metric">Weeks → Hours</span>
+                            <span class="metric">Audit-Ready KPIs</span>
+                        </p>
+                        <p style="margin-top: 15px;">Leadership confidence in performance metrics increased dramatically, enabling evidence-based strategic decisions and passing rigorous contractual audits.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card fade-in-up delay-2">
+                <div class="challenge-header">
+                    <div class="challenge-icon">💰</div>
+                    <div class="challenge-subtitle">Financial Transparency Gap</div>
+                    <h3 class="challenge-title">Complex Funding Reconciliation Automation</h3>
+                </div>
+                <div class="challenge-body">
+                    <div class="challenge-section">
+                        <h4>The Challenge</h4>
+                        <p>Tracking incremental funding across multiple programs involved manual Excel calculations prone to errors. Financial reconciliation took days each month, with frequent discrepancies between obligations and expenditures causing reporting delays.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>The Solution</h4>
+                        <p>Implemented advanced DAX formulas with incremental funding logic and dynamic date modeling. Created automated pipelines triggered by SharePoint updates that calculated cumulative funding and spending in real-time across all contract vehicles.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>Impact</h4>
+                        <p>
+                            <span class="metric">50% Error Reduction</span>
+                            <span class="metric">Real-Time Visibility</span>
+                            <span class="metric">Days → Minutes</span>
+                        </p>
+                        <p style="margin-top: 15px;">Executives gained instant visibility into funding burn rates and spending projections, enabling proactive budget management and eliminating month-end surprises.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card fade-in-up delay-3">
+                <div class="challenge-header">
+                    <div class="challenge-icon">🎯</div>
+                    <div class="challenge-subtitle">Recruitment Optimization</div>
+                    <h3 class="challenge-title">Data-Driven Talent Acquisition</h3>
+                </div>
+                <div class="challenge-body">
+                    <div class="challenge-section">
+                        <h4>The Challenge</h4>
+                        <p>CBP struggled with identifying which recruitment campaigns were effective. Limited visibility into candidate conversion funnels meant continued investment in underperforming channels while missing opportunities in high-performing ones.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>The Solution</h4>
+                        <p>Designed comprehensive Power BI dashboards integrating LinkedIn campaign data with internal applicant tracking systems. Built conversion funnel analysis showing performance at every stage from impression to hire, with demographic breakdowns and cost-per-hire metrics.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>Impact</h4>
+                        <p>
+                            <span class="metric">20% More Qualified Applicants</span>
+                            <span class="metric">Campaign ROI Visibility</span>
+                            <span class="metric">Strategic Targeting</span>
+                        </p>
+                        <p style="margin-top: 15px;">HR leadership could reallocate budget to highest-performing campaigns, optimize job posting language, and identify untapped talent pools, dramatically improving hiring quality and efficiency.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card fade-in-up delay-4">
+                <div class="challenge-header">
+                    <div class="challenge-icon">⚡</div>
+                    <div class="challenge-subtitle">Manual Reporting Burden</div>
+                    <h3 class="challenge-title">Dashboard Automation at Scale</h3>
+                </div>
+                <div class="challenge-body">
+                    <div class="challenge-section">
+                        <h4>The Challenge</h4>
+                        <p>Analysts spent 60-70% of their time manually updating PowerPoint reports and Excel spreadsheets for executive stakeholders. Data was often stale by the time reports were delivered, limiting agility in decision-making.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>The Solution</h4>
+                        <p>Built 18+ enterprise-grade Power BI dashboards with automated refresh pipelines and modular, reusable data models. Established governance frameworks with standardized templates, version control, and self-service access for stakeholders.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>Impact</h4>
+                        <p>
+                            <span class="metric">60-70% Time Savings</span>
+                            <span class="metric">Near Real-Time Insights</span>
+                            <span class="metric">Self-Service BI</span>
+                        </p>
+                        <p style="margin-top: 15px;">Analysts redirected saved time to strategic analysis and predictive modeling. Executives accessed current data 24/7, enabling faster response to emerging issues and opportunities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card fade-in-up delay-5">
+                <div class="challenge-header">
+                    <div class="challenge-icon">🔍</div>
+                    <div class="challenge-subtitle">Workforce Risk Blindspots</div>
+                    <h3 class="challenge-title">Predictive Attrition Analytics</h3>
+                </div>
+                <div class="challenge-body">
+                    <div class="challenge-section">
+                        <h4>The Challenge</h4>
+                        <p>CBP experienced unexpected attrition in critical roles, disrupting operations and requiring costly emergency hiring. HR lacked predictive capabilities to identify at-risk employees before they resigned, leaving only reactive responses.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>The Solution</h4>
+                        <p>Developed predictive models combining historical attrition patterns, tenure data, performance metrics, and vacancy trends. Created risk scoring system highlighting employees and departments with elevated turnover likelihood, with drill-down capabilities to understand root causes.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>Impact</h4>
+                        <p>
+                            <span class="metric">Proactive Retention</span>
+                            <span class="metric">Risk Identification</span>
+                            <span class="metric">Strategic Planning</span>
+                        </p>
+                        <p style="margin-top: 15px;">HR could intervene early with targeted retention strategies, succession planning, and proactive recruiting for high-risk positions, reducing costly turnover and operational disruption.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card fade-in-up delay-6">
+                <div class="challenge-header">
+                    <div class="challenge-icon">🏛️</div>
+                    <div class="challenge-subtitle">BI Governance Chaos</div>
+                    <h3 class="challenge-title">Enterprise Report Governance System</h3>
+                </div>
+                <div class="challenge-body">
+                    <div class="challenge-section">
+                        <h4>The Challenge</h4>
+                        <p>18+ enterprise dashboards scattered across SharePoint with inconsistent documentation, unclear ownership, and no version control. Stakeholders couldn't find reports, admins couldn't track usage, and outdated reports remained accessible causing confusion.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>The Solution</h4>
+                        <p>Redesigned SharePoint architecture with centralized report catalog, metadata tagging system, role-based access controls, and automated version tracking. Implemented governance frameworks with code review processes, standardized templates, and SOPs for report lifecycle management.</p>
+                    </div>
+                    <div class="challenge-section">
+                        <h4>Impact</h4>
+                        <p>
+                            <span class="metric">25% Faster Retrieval</span>
+                            <span class="metric">Higher Engagement</span>
+                            <span class="metric">Audit-Ready Governance</span>
+                        </p>
+                        <p style="margin-top: 15px;">Stakeholders found and accessed reports 25% faster, report quality and consistency improved through standardization, and comprehensive audit trail met compliance requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <p class="section-subtitle">Comprehensive expertise across the modern data and analytics technology stack</p>
+        </div>
+
+        <div class="skills-container">
+            <div class="skill-category fade-in-up delay-1">
+                <h3>Business Intelligence & Visualization</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">DAX</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Power Query</span>
+                    <span class="skill-tag">SharePoint</span>
+                    <span class="skill-tag">ServiceNow</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in-up delay-2">
+                <h3>Data & Database Management</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">MSSQL</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Azure SQL</span>
+                    <span class="skill-tag">Data Modeling</span>
+                    <span class="skill-tag">ETL Processes</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in-up delay-3">
+                <h3>Cloud & Integration Platforms</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Microsoft Azure</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Salesforce</span>
+                    <span class="skill-tag">NetSuite</span>
+                    <span class="skill-tag">BigQuery</span>
+                    <span class="skill-tag">Alteryx</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in-up delay-4">
+                <h3>Programming & Scripting</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">DAX</span>
+                    <span class="skill-tag">M Language</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in-up delay-5">
+                <h3>Analytics & Reporting</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">KPI/KRI Reporting</span>
+                    <span class="skill-tag">Predictive Analytics</span>
+                    <span class="skill-tag">Statistical Analysis</span>
+                    <span class="skill-tag">Portfolio Monitoring</span>
+                    <span class="skill-tag">Risk Dashboards</span>
+                    <span class="skill-tag">Workforce Analytics</span>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in-up delay-6">
+                <h3>Project & Stakeholder Management</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Agile Methodologies</span>
+                    <span class="skill-tag">Cross-functional Collaboration</span>
+                    <span class="skill-tag">Requirements Gathering</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">BI Governance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Interests Section -->
+    <section id="interests">
+        <div class="section-header">
+            <h2 class="section-title">Beyond the Dashboards</h2>
+            <p class="section-subtitle">Data enthusiast, Formula 1 fanatic, and distance runner—finding insights in every lap and mile</p>
+        </div>
+
+        <div class="interests-grid">
+            <div class="interest-card fade-in-up delay-1">
+                <div class="interest-header">
+                    <div class="interest-icon">🏎️</div>
+                    <h3>Formula 1 Analytics</h3>
+                    <p class="interest-subtitle">Racing Meets Data Science</p>
+                </div>
+                <div class="interest-body">
+                    <p>As a lifelong Formula 1 enthusiast, I'm fascinated by the intersection of motorsport and data analytics. From telemetry analysis to race strategy optimization, F1 represents the ultimate data-driven sport where milliseconds and micro-decisions determine championships.</p>
+                    
+                    <div class="passion-points">
+                        <div class="passion-item">
+                            <span class="passion-label">Favorite Teams:</span>
+                            <span class="passion-value">Ferrari, McLaren</span>
+                        </div>
+                        <div class="passion-item">
+                            <span class="passion-label">Tracking:</span>
+                            <span class="passion-value">Lap times, tire strategies, DRS zones</span>
+                        </div>
+                        <div class="passion-item">
+                            <span class="passion-label">Dream Project:</span>
+                            <span class="passion-value">Predictive race outcome modeling</span>
+                        </div>
+                    </div>
+
+                    <div class="project-idea">
+                        <h4>💡 Potential Project: F1 Race Strategy Analyzer</h4>
+                        <p>Build a Power BI dashboard analyzing historical F1 data to predict optimal pit stop strategies based on tire degradation, weather conditions, and competitor behavior. Leverage machine learning to forecast race outcomes and identify key decision moments.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Ergast F1 API</span>
+                            <span class="tech-tag">Azure ML</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interest-card fade-in-up delay-2">
+                <div class="interest-header">
+                    <div class="interest-icon">🏃</div>
+                    <h3>Distance Running</h3>
+                    <p class="interest-subtitle">Data-Driven Endurance Training</p>
+                </div>
+                <div class="interest-body">
+                    <p>Running isn't just about physical endurance—it's about analyzing performance metrics, optimizing training zones, and tracking progress over time. Every run generates data that tells a story of improvement, adaptation, and personal growth.</p>
+                    
+                    <div class="passion-points">
+                        <div class="passion-item">
+                            <span class="passion-label">Favorite Distance:</span>
+                            <span class="passion-value">Half Marathon (13.1 miles)</span>
+                        </div>
+                        <div class="passion-item">
+                            <span class="passion-label">Tracking:</span>
+                            <span class="passion-value">Pace, heart rate zones, cadence, elevation</span>
+                        </div>
+                        <div class="passion-item">
+                            <span class="passion-label">Goal:</span>
+                            <span class="passion-value">Sub-1:45 half marathon</span>
+                        </div>
+                    </div>
+
+                    <div class="project-idea">
+                        <h4>💡 Potential Project: Personal Running Analytics Platform</h4>
+                        <p>Create a comprehensive running analytics dashboard integrating Strava/Garmin data to analyze training load, predict race times, identify injury risk patterns, and optimize training plans. Includes weather impact analysis and recovery metrics visualization.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Strava API</span>
+                            <span class="tech-tag">Python (Pandas)</span>
+                            <span class="tech-tag">Dataverse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interest-card fade-in-up delay-3">
+                <div class="interest-header">
+                    <div class="interest-icon">📊</div>
+                    <h3>Sports Analytics</h3>
+                    <p class="interest-subtitle">Where Passion Meets Data</p>
+                </div>
+                <div class="interest-body">
+                    <p>Combining my love for sports with my data expertise creates endless opportunities for fascinating analysis. Whether it's F1 race simulations or marathon pace predictions, sports analytics challenges me to think creatively about data storytelling.</p>
+                    
+                    <div class="passion-points">
+                        <div class="passion-item">
+                            <span class="passion-label">Philosophy:</span>
+                            <span class="passion-value">Every athlete is a dataset waiting to be optimized</span>
+                        </div>
+                        <div class="passion-item">
+                            <span class="passion-label">Inspiration:</span>
+                            <span class="passion-value">F1 strategists, Strava engineers, sports scientists</span>
+                        </div>
+                    </div>
+
+                    <div class="project-idea">
+                        <h4>💡 Potential Project: F1 vs Marathon Endurance Comparison</h4>
+                        <p>Cross-sport analysis comparing physical and mental endurance metrics between F1 drivers (2-hour races under extreme G-forces) and marathon runners (2-3 hour races). Visualize heart rate patterns, hydration strategies, and performance degradation curves.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">R (statistical analysis)</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Sports APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="personal-philosophy">
+            <h3>Why This Matters for Data Analytics</h3>
+            <p>My interests in F1 and running aren't just hobbies—they inform how I approach data analytics professionally. Both domains require split-second decision-making based on real-time data, long-term strategy optimization, and the ability to find patterns in complex, dynamic systems. Whether analyzing race telemetry or training metrics, I apply the same rigorous analytical thinking that drives my professional work.</p>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Recognition & Awards</h2>
+            <p class="section-subtitle">Honored for outstanding contributions to team success and customer service excellence</p>
+        </div>
+
+        <div class="awards-container">
+            <div class="award-card fade-in-up delay-1">
+                <h3 class="award-title">Excellence Award</h3>
+                <p class="award-date">July 2025</p>
+                <p style="color: var(--text-muted); margin-top: 15px;">
+                    Recognized for exceptional performance and contribution to organizational success through innovative BI solutions and technical leadership.
+                </p>
+            </div>
+
+            <div class="award-card fade-in-up delay-2">
+                <h3 class="award-title">SPOT Award</h3>
+                <p class="award-date">March 2024</p>
+                <p style="color: var(--text-muted); margin-top: 15px;">
+                    Outstanding Customer Centric Service and Teamwork - Acknowledged for going above and beyond in delivering exceptional stakeholder value and fostering collaborative excellence.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-section">
+            <h2>Let's Build Something Amazing</h2>
+            <p>Ready to transform your data challenges into strategic advantages? Let's connect and explore how we can drive impact together.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5935383c35383f6a6b68193e34383035773a3634">[email&#160;protected]</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>571-406-8022</span>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="/cdn-cgi/l/email-protection#88e4e9ede4e9eebbbab9c8efe5e9e1e4a6ebe7e5" class="btn btn-primary">Send Email</a>
+                <a href="tel:571-406-8022" class="btn btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Laelaf Abebe. All rights reserved.</p>
+        <p style="margin-top: 10px; color: var(--text-muted); font-size: 14px;">
+            Lead Power BI Engineer | Data Analytics Expert | M.S. Data Analytics Engineering
+        </p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe skill categories
+        document.querySelectorAll('.skill-category').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe challenge cards
+        document.querySelectorAll('.challenge-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe award cards
+        document.querySelectorAll('.award-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add active state to navigation on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navL
