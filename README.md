@@ -1,1 +1,7 @@
-# laelafBI.github.io
+# Hi, I'm Laelaf Abebe 👋 
+### 🚀 Lead Power BI Engineer | Enterprise Data Analytics I transform complex data into strategic insights for federal agencies and enterprises. Currently leading BI development for the **VA ESOM Program** at Kentro. --- 
+### 📊 What I Do - 🏛️ **18+ enterprise dashboards** deployed across VA, CBP, IRS - 🔍 Engineered ETL for **500K+ performance records** with 99%+ traceability - 💰 Automated financial reconciliation, reducing errors by **50%** - 🎯 Built predictive workforce models driving **20% recruitment gains** - 📉 Reduced manual reporting effort by **60–70%** through automated pipelines --- 
+### 🛠️ Tech Stack ![Power BI](badge) ![DAX](badge) ![Python](badge) ![SQL](badge) ![Azure](badge) ![SharePoint](badge) ![Power Query](badge) ![R](badge) --- 
+### 🔬 Personal Projects | Project | Description | Status | |---------|-------------|--------| | 🏎️ F1 Race Strategy Analyzer | Predictive pit stop model using Ergast API | 🔨 Building | | 🏃 Running Analytics Platform | Strava-integrated training dashboard | 🔨 Building | | 🏛️ BI Governance Framework | VA report catalog & governance app | ✅ Live | --- 
+### 📫 Let's Connect [![LinkedIn](badge)](https://linkedin.com/in/laelaabebe) [![Portfolio](badge)](https://laelafBI.github.io) [![Email](badge)](mailto:laelaf321@gmail.com) --- 
+*"Turning data chaos into executive clarity — one dashboard at a time."*
